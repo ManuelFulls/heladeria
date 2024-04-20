@@ -99,3 +99,37 @@ a {
     color-scheme: dark;
   }
 }
+
+.promocion {
+  width: 30%; 
+}
+
+.promocion-content {
+  margin-bottom: 20px; 
+}
+
+.promociones-lista {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.sobre-nosotros-container {
+  text-align: center;
+}
+
+.sobre-nosotros-title {
+  margin-bottom: 30px; 
+}
+
+.sobre-nosotros-content {
+  margin-bottom: 30px; 
+}
+
+.sobre-nosotros-text {
+  font-size: 25px;
+}
+
+.sobre-nosotros {
+  font-size: 60px;
+  margin-top: 40px;
+}

@@ -1,7 +1,23 @@
+import React from 'react';
+
 export default function Promociones() {
-  return (<section>
-    <h1>PROMOCIONES</h1>
-    <span>Aqui iran las promociones, no pondremos muchas promociones solo 3 que 
-      sean vigentes a la semana
-    </span>
-    </section>)}
+  return (
+    <section>
+      
+      <div className="promociones-lista">
+        <div className="promocion">
+          <h2>¡Helado del Día!</h2>
+          <p>Compra un helado grande y obtén el segundo al 30% de descuento.</p>
+        </div>
+        <div className="promocion">
+          <h2>Hora del helado</h2>
+          <p>Los martes y jueves, de 3:00 PM a 5:00 PM, todos los helados tienen un 20% de descuento.</p>
+        </div>
+        <div className="promocion">
+          <h2>Promoción Familiar</h2>
+          <p>Helados 2x1 para los niños y para los adultos el 5% de descuento</p>
+        </div>
+      </div>
+    </section>
+  );
+}
