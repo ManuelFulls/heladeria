@@ -15,6 +15,7 @@ export default function Promociones() {
         </div>
         <div className="promocion">
           <h2>Promoción Familiar</h2>
+          <h3>Moficiacion equis</h3>
           <p>Helados 2x1 para los niños y para los adultos el 5% de descuento</p>
         </div>
       </div>
