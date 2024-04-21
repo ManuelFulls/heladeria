@@ -143,3 +143,24 @@ a {
   font-size: 60px;
   margin-top: 40px;
 }
+
+.titulo-seccion {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.seccion-helados {
+  display: flex; 
+  overflow-x: auto; 
+}
+
+.lista-helados {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.helado {
+  text-align: center;
+  margin-bottom: 20px;
+}
