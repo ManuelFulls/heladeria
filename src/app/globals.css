@@ -78,7 +78,7 @@
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: white;
+  /* background-color: white; */
   color: black;
 }
 
@@ -87,7 +87,6 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-
 
 a {
   color: inherit;
@@ -101,25 +100,23 @@ a {
 }
 
 .promocion {
-  
   border: 1px solid #ccc;
   padding: 10px;
-
 }
 
 .promocion-content {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .promociones-lista {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
 .fila-promociones {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -128,11 +125,11 @@ a {
 }
 
 .sobre-nosotros-title {
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
 
 .sobre-nosotros-content {
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
 
 .sobre-nosotros-text {
@@ -151,16 +148,184 @@ a {
 }
 
 .seccion-helados {
-  display: flex; 
-  overflow-x: auto; 
+  display: flex;
+  overflow-x: auto;
 }
 
-.lista-helados {
+/* .lista-helados {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-}
-.helado {
+} */
+/* .helado {
   text-align: center;
   margin-bottom: 20px;
+} */
+
+/* HELADO */
+
+.helados-de-crema {
+  padding-inline: 2em;
+  padding-bottom: 8em;
+}
+
+.lista-helados {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3em;
+}
+
+.helado {
+  display: grid;
+  place-content: center;
+  background-color: rgb(244, 240, 234);
+  padding: 0.5em;
+  border-radius: 1em;
+  gap: 1em;
+}
+
+.detalles-helado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.detalles-helado button {
+  border: none;
+  padding: 0.5em 2em;
+  background-color: black;
+  color: white;
+  border-radius: 0.5em;
+}
+
+.helado h2,
+.helado h3 {
+  text-align: center;
+}
+
+.imagen-helado {
+  object-fit: cover;
+  border-radius: 1em;
+  transition: all ease-in-out 0.3s;
+}
+
+.imagen-helado:hover {
+  transform: scale(1.1);
+}
+
+.tabla {
+  width: 80%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  gap: 1em;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  background-color: #ffebeb;
+}
+
+td,
+th {
+  text-align: start;
+  padding: 0.7em 1em;
+}
+
+.cuenta-total {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.cuenta-total input {
+  padding: 0.25em 0.5em;
+  width: fit-content;
+}
+
+.controles {
+  display: flex;
+  gap: 1em;
+}
+
+
+button {
+  transition: all ease-in-out .3s;
+}
+
+.controles button {
+  padding: .75em 1.5em;
+  border: none;
+  color: white;
+  border-radius: 1em;
+}
+
+
+.confirmar-compra {
+  background-color: cornflowerblue;
+}
+
+.confirmar-compra:hover {
+  background-color: rgb(25, 25, 100);
+}
+
+
+
+.cancelar-compra {
+  background-color: crimson;
+}
+
+.cancelar-compra:hover {
+  background-color: rgb(133, 40, 40);
+}
+
+.no-productos {
+  display: grid;
+  justify-items: center;
+  padding-top: 4em;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  width: 100dvw;
+  height: 100dvh;
+  display: grid;
+  justify-items: center;
+  place-content: center;
+  text-align: center;
+  
+  backdrop-filter: blur(10); 
+  background-color: #ffffff96;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
+.qr {
+  display: grid;
+  width: 90%;
+  margin: auto;
+  justify-items: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.qr button {
+  padding: .75em 1.5em;
+  border: none;
+  color: white;
+  border-radius: 1em;
+  background-color: cornflowerblue;
+}
+
+.qr button:hover {
+  background-color: rgb(25, 25, 100);
 }
