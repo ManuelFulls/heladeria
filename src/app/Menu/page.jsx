@@ -20,11 +20,11 @@ export default function IceCreamMenu() {
         </div>
         <div className="helado">
           <Image src={chocolate} alt="Helado de Chocolate" width={300} height={200}/>
-          <h2>Helado de Fresa</h2>
+          <h2>Helado de Chocolate</h2>
         </div>
         <div className="helado">
           <Image src={maracuya} alt="Helado de Maracuya" width={300} height={200} />
-          <h2>Helado de Fresa</h2>
+          <h2>Helado de Maracuya</h2>
         </div>
       </div>
     </section>
