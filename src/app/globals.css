@@ -101,7 +101,10 @@ a {
 }
 
 .promocion {
-  width: 30%; 
+  
+  border: 1px solid #ccc;
+  padding: 10px;
+
 }
 
 .promocion-content {
@@ -109,8 +112,15 @@ a {
 }
 
 .promociones-lista {
-  display: flex;
-  justify-content: space-between; 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px;
+}
+
+.fila-promociones {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px;
 }
 
 .sobre-nosotros-container {
