@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { MdiFacebook, Instagram, Tiktok } from "@/components/icons";
 import Social from "@/components/social-link";
+import pictures from "../assets/img/Cono.jpg"
+
 
 export default function Home() {
   return (
@@ -23,11 +25,8 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.conteImg}>
-            <img
-              src="https://img.freepik.com/fotos-premium/helado-fresa_732812-2165.jpg"
-              alt=""
-              className={styles.imagen}
-            />
+            <Image src={pictures} alt="numa" className={styles.imagen}/>
+           
           </div>
         </div>
       </div>
