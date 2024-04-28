@@ -1,0 +1,32 @@
+
+
+
+.titulo,.label,.input{
+    display: block;
+    background-color: transparent;
+}
+.boton{
+    margin-bottom: 1em;
+    background-color: #15CD69;
+    width: 50%;
+    height: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+
+}
+.titulo{
+    margin-top: 1em;
+}
+
+.form{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(248, 240, 240);
+    width: 30%;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    row-gap: 1em;
+}
