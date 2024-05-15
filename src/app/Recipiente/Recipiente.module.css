@@ -1,0 +1,51 @@
+
+
+.container_boton{
+    display: flex;
+    justify-content: space-around;
+}
+.container_input{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cambia el número de columnas según tus necesidades */
+    grid-auto-rows: minmax(50px, auto); /* Ajusta la altura automáticamente según el contenido */
+    gap: 10px; /* Espacio entre las filas y columnas */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3); /* Sombra */
+    margin: 20px; /* Margen externo */
+    border-radius: 20px;
+    align-items: center;
+   
+    
+}
+.title{
+    
+    text-align: center;
+}
+
+.tipo{
+   display: block;
+   width: 100%;
+}
+
+.form{
+    width:30%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.span1{
+    display: block;
+}
+.Product{
+    text-align: center;
+    display: block;
+    margin: .5em;
+}
+.boton{
+    width: 5em;
+    height: 2em;
+    border-radius: 20px;
+    background-color: #15CD69;
+    display: block;
+}

@@ -2,9 +2,9 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { MdiFacebook, Instagram, Tiktok } from "@/components/icons";
 import Social from "@/components/social-link";
-import pictures from "../assets/img/Cono.jpg"
+import pictures from "../assets/img/Cono.jpg";
 
-
+import { redirect } from "next/navigation";
 export default function Home() {
   return (
     <main className={styles.main}>
@@ -17,16 +17,17 @@ export default function Home() {
             <h1 className={styles.titulo}>
               DESCRUBRE LOS PRODUCTOS QUE TENEMOS PARA TI
             </h1>
+
             <button className={styles.boton}>Explora</button>
+
             <div className={styles.social}>
-              <Social url="#" title="Jesus50056" icon={MdiFacebook} />
-              <Social url="#" title="Jesus50056" icon={Instagram} />
-              <Social url="#" title="Jesus50056" icon={Tiktok} />
+              <Social url={"#"} title={"HeladitosWeb"} icon={MdiFacebook} />
+              <Social url={"#"} title={"HeladitosWeb"} icon={Instagram} />
+              <Social url={"#"} title={"HeladitosWeb"} icon={Tiktok} />
             </div>
           </div>
           <div className={styles.conteImg}>
-            <Image src={pictures} alt="numa" className={styles.imagen}/>
-           
+            <Image src={pictures} alt="numa" className={styles.imagen} />
           </div>
         </div>
       </div>

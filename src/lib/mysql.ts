@@ -21,8 +21,13 @@ class ConnectionPool {
 
 
 
-// SELECCIONAR PRODUCTOS
+
 export class DB {
+
+
+
+
+// SELECCIONAR PRODUCTOS
   static async getProducts() {
     const QUERY = `SELECT * FROM producto`
     const products = await ConnectionPool.query(QUERY)
@@ -30,11 +35,21 @@ export class DB {
   }
 
 
+
+  //SELECCIONAR ENVASES
+  static async getEnvases(){
+    const QUERY = `SELECT * FROM envase`
+    const envases = await ConnectionPool.query(QUERY)
+    return envases as Envase[]
+  }
+
+
+
   //INSERT PRODUCTOS
-  static async insertProduct({nombre, tipo, precio, tipo_envase, sabor, cantidad}: Partial<Producto>){
+  static async insertProduct({nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen}: Partial<Producto>){
    try {
-    const QUERY = `INSERT INTO producto ( nombre, tipo, precio, tipo_envase, sabor, cantidad) values (?,?,?,?,?,?,?)`
-    await ConnectionPool.query(QUERY,[ nombre, tipo, precio, tipo_envase, sabor, cantidad] )
+    const QUERY = `INSERT INTO producto ( nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen) values (?,?,?,?,?,?,?,?)`
+    await ConnectionPool.query(QUERY,[ nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen] )
     return true
    } catch (error) {
     return false
@@ -42,7 +57,7 @@ export class DB {
   }
 
 
-  //INSERT 
+  //SELECT PRODUCTOS 
   static async getProductById(id: number){
     const QUERY = `SELECT * FROM producto where id_producto=?`
     const productos = await ConnectionPool.query(QUERY, [id]) as any
@@ -50,12 +65,12 @@ export class DB {
   }
   
   //MODIFICAR PRODUCTOS
-  static async updateProduct({id_producto ,nombre, tipo, precio, tipo_envase, sabor, cantidad}: Partial<Producto>){
+  static async updateProduct({id_producto ,nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen}: Partial<Producto>){
     try {
       const QUERY = `UPDATE producto 
-      SET nombre = ?, tipo = ?, precio = ?, tipo_envase = ?, sabor = ?, cantidad = ?
+      SET nombre = ?, tipo = ?, precio = ?, tipo_envase = ?, sabor = ?, cantidad = ?, estado = ?, imagen = ?
       WHERE id_producto = ?`;
-     await ConnectionPool.query(QUERY,[nombre, tipo, precio, tipo_envase, sabor, cantidad, id_producto] )
+     await ConnectionPool.query(QUERY,[nombre, tipo, precio, tipo_envase, sabor, cantidad, id_producto, estado, imagen] )
      return true
     } catch (error) {
      return false
@@ -85,11 +100,11 @@ export class DB {
         }
       }
       //INSERT ENVASE
-      static async insertEnvase({id_envase, nombre}: Partial<Envase>){
+      static async insertEnvase({id_envase, nombre, cantidad}: Partial<Envase>){
 
         try {
-          const QUERY = `INSERT INTO envase (id_envase, nombre) VALUES (?,?)`
-          await ConnectionPool.query(QUERY,[id_envase, nombre])
+          const QUERY = `INSERT INTO envase (id_envase, nombre, cantidad) VALUES (?,?,?)`
+          await ConnectionPool.query(QUERY,[id_envase, nombre, cantidad])
           return true
         } catch (error) {
           return false

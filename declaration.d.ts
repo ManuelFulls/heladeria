@@ -13,7 +13,11 @@ export declare global {
     interface Envase{
         id_envase: number
         nombre: string 
+        cantidad: number
+        fecha: Date
     }
+
+    {/**Eliminar la tabla inventario */}
     interface Inventario{
         id_inventario: number
         id_envase: number
@@ -32,6 +36,9 @@ export declare global {
       tipo_envase: number
       sabor: string
       cantidad: number
+      estado: string
+      imagen: string
+      fecha: Date
     
     }
     interface Promocion{

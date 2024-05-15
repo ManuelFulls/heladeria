@@ -1,10 +1,10 @@
 import Navigation from "@/components/navegation/index";
 
-export default function Acceso() {
+export default function Empleado() {
   return (
     <>
       <Navigation />
-      <h1>Control del inventario</h1>
+      <h1>EMPLEADO</h1>
     </>
   );
 }
