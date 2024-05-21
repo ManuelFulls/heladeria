@@ -1,8 +1,8 @@
 export declare global {
     interface Empleado {
-      matricula: String
+      matricula: string
       nombre: string
-      contraseña: string
+      contraseña: String
       telefono: number
     }
     interface Carrito {
@@ -14,7 +14,7 @@ export declare global {
         id_envase: number
         nombre: string 
         cantidad: number
-        fecha: Date
+        fecha: String
     }
 
     {/**Eliminar la tabla inventario */}
@@ -47,8 +47,8 @@ export declare global {
       descripcion: string 
       id_producto: number
       precio_especial: number
-      fecha_inicio: Date
-      fecha_fin: Date
+      fecha_inicio: string
+      fecha_fin: string
 
     }
   

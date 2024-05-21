@@ -42,7 +42,7 @@
     display: block;
     margin: .5em;
 }
-.boton, .editar{
+.boton{
     width: 5em;
     height: 2em;
     border-radius: 20px;

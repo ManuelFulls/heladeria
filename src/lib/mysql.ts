@@ -43,7 +43,12 @@ export class DB {
     return envases as Envase[]
   }
 
-
+  //SELECCIONAR PROMOCIONES
+  static async getPromopciones(){
+    const QUERY = `SELECT * FROM promocion`
+    const promociones = await ConnectionPool.query(QUERY)
+    return promociones as Promocion[]
+  }
 
   //INSERT PRODUCTOS
   static async insertProduct({nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen}: Partial<Producto>){
@@ -76,8 +81,39 @@ export class DB {
      return false
     }
    }
+
+
+     
+  //MODIFICAR ENVASES
+  static async updateEnvase({id_envase, nombre, cantidad, fecha}: Partial<Envase>){
+    try {
+      const QUERY = `UPDATE envase 
+      SET nombre = ?, cantidad = ?, fecha = ?
+      WHERE id_envase = ?`;
+     await ConnectionPool.query(QUERY,[nombre, cantidad, fecha, id_envase] )
+     return true
+    } catch (error) {
+     return false
+    }
+   }
+
+ 
+   //ELIMINAR UN REGISTRO ENVASES
+   static async deleteEnvase({id_envase}: Partial<Envase>) {
+    try {
+      const QUERY = `DELETE FROM envase where id_envase=?`;
+      await ConnectionPool.query(QUERY,[id_envase])
+      return true
+    } catch (error) {
+      return false
+      
+    }
+   }
+ 
+   
+
       //INSERT EMPLEADOS
-      static async insertUser({matricula, nombre, contraseña, telefono}: Partial<Empleado>){
+      static async insertEmpleado({matricula, nombre, contraseña, telefono}: Partial<Empleado>){
        try {
         const QUERY = `INSERT INTO empleado (matricula, nombre, contraseña, telefono) values (?,?,?,?)`
         await ConnectionPool.query(QUERY,[matricula, nombre, contraseña, telefono])
@@ -100,11 +136,11 @@ export class DB {
         }
       }
       //INSERT ENVASE
-      static async insertEnvase({id_envase, nombre, cantidad}: Partial<Envase>){
+      static async insertEnvase({id_envase, nombre, cantidad, fecha}: Partial<Envase>){
 
         try {
-          const QUERY = `INSERT INTO envase (id_envase, nombre, cantidad) VALUES (?,?,?)`
-          await ConnectionPool.query(QUERY,[id_envase, nombre, cantidad])
+          const QUERY = `INSERT INTO envase (id_envase, nombre, cantidad, fecha) VALUES (?,?,?,?)`
+          await ConnectionPool.query(QUERY,[id_envase, nombre, cantidad, fecha])
           return true
         } catch (error) {
           return false
