@@ -3,11 +3,11 @@ import styles from "./page.module.css";
 import { MdiFacebook, Instagram, Tiktok } from "@/components/icons";
 import Social from "@/components/social-link";
 import pictures from "../assets/img/Cono.jpg";
-
-import { redirect } from "next/navigation";
+import { Header } from "@/components/Header";
 export default function Home() {
   return (
     <main className={styles.main}>
+      <Header />
       <div>
         <div className={styles.contenedorE}>
           <h2 className={styles.eslogan}>"MOMENTOS DE PLACER"</h2>
@@ -17,8 +17,6 @@ export default function Home() {
             <h1 className={styles.titulo}>
               DESCRUBRE LOS PRODUCTOS QUE TENEMOS PARA TI
             </h1>
-
-            <button className={styles.boton}>Explora</button>
 
             <div className={styles.social}>
               <Social url={"#"} title={"HeladitosWeb"} icon={MdiFacebook} />

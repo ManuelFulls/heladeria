@@ -33,7 +33,7 @@ export async function editarForm(data: FormData) {
       : undefined,
   };
   const resultado = await DB.updateEnvase(envase);
-  console.log("Producto modificado correctamente");
+  console.log("Envase modificado correctamente");
   console.log(envase);
 }
 

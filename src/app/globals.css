@@ -72,13 +72,14 @@
     --card-border-rgb: 200, 200, 200;
   }
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
-   background-color: white;
+  background-color: white;
   color: black;
   
 }
@@ -111,7 +112,12 @@ a {
 }
 
 .promocion:hover {
-  box-shadow: 0 3px 6px #29754b; /* Sombra que resalta al pasar el cursor */
+ 
+ 
+    transform: translateY(-.5rem); /* Eleva el div hacia arriba */
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+  
+  
 }
 
 .promocion-content {
@@ -161,11 +167,7 @@ a {
   margin-bottom: 30px;
   background-color: transparent;
 }
-/*
-.sobre-nosotros-content {
-  margin-bottom: 30px;
-}
-*/
+
 .sobre-nosotros-text {
   font-size: 1.3em;
   background-color: transparent;
@@ -196,15 +198,6 @@ a {
   overflow-x: auto;
 }
 
-/* .lista-helados {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-} */
-/* .helado {
-  text-align: center;
-  margin-bottom: 20px;
-} */
 
 
 
@@ -222,12 +215,15 @@ a {
 .helados-de-crema {
   padding-inline: 2em;
   padding-bottom: 8em;
+  
+  
 }
 
 .lista-helados {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3em;
+  
 }
 
 .helado {
@@ -237,6 +233,7 @@ a {
   padding: 0.5em;
   border-radius: 1em;
   gap: 1em;
+  
 }
 
 .detalles-helado {
@@ -244,14 +241,17 @@ a {
   justify-content: center;
   align-items: center;
   gap: 1em;
+  background-color: transparent;
 }
 
 .detalles-helado button {
-  border: none;
-  padding: 0.5em 2em;
-  background-color: black;
-  color: white;
-  border-radius: 0.5em;
+  
+  
+  width: 5em;
+  height: 2em;
+  border-radius: 20px;
+  background-color: #15CD69;
+  
 }
 
 .helado h2,
@@ -312,6 +312,8 @@ th {
 
 button {
   transition: all ease-in-out .3s;
+  
+
 }
 
 .controles button {
@@ -383,4 +385,7 @@ button {
 
 .qr button:hover {
   background-color: rgb(25, 25, 100);
+}
+h2, h3{
+  background-color: transparent;
 }

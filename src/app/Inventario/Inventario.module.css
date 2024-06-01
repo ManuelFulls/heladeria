@@ -44,3 +44,11 @@
     background-color: #15CD69;
     
 }
+
+.imagen{
+    max-width: 0px; /* Cambia este valor según tus necesidades */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  

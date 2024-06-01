@@ -60,12 +60,20 @@ export default function Recipiente() {
 
     try {
       if (accion === "boton1") {
-        await insertarForm(formData);
+        if (!id || !nombre || !cantidad || !fecha) {
+          alert("Todos los campos son obligatorios");
+        } else {
+          await insertarForm(formData);
+        }
       } else if (accion === "boton2") {
-        await editarForm(formData);
+        if (!id || !nombre || !cantidad || !fecha) {
+          alert("Todos los campos son obligatorios");
+        } else {
+          await editarForm(formData);
+        }
       }
 
-      console.log(formData);
+      //console.log(formData);
 
       // Vuelve a obtener la lista de envases después de agregar un nuevo envase
       const updatedEnvases = await api();
@@ -112,7 +120,7 @@ export default function Recipiente() {
     <>
       <Navigation />
       <h1 className={styles.title}>Recipientes</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
         <div className={styles.container_input}>
           <div className={styles.nombre}>
             <label className={styles.span1}>Id</label>

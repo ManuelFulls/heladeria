@@ -44,21 +44,37 @@ export class DB {
   }
 
   //SELECCIONAR PROMOCIONES
-  static async getPromopciones(){
+  static async getPromociones(){
     const QUERY = `SELECT * FROM promocion`
     const promociones = await ConnectionPool.query(QUERY)
     return promociones as Promocion[]
   }
 
   //INSERT PRODUCTOS
-  static async insertProduct({nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen}: Partial<Producto>){
+  static async insertProduct({id_producto, nombre, tipo, precio, sabor, cantidad, estado, imagen, fecha}: Partial<Producto>){
    try {
-    const QUERY = `INSERT INTO producto ( nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen) values (?,?,?,?,?,?,?,?)`
-    await ConnectionPool.query(QUERY,[ nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen] )
+    const QUERY = `INSERT INTO producto (id_producto, nombre, tipo, precio, sabor, cantidad, estado, imagen, fecha) values (?,?,?,?,?,?,?,?,?)`
+    await ConnectionPool.query(QUERY,[ id_producto, nombre, tipo, precio, sabor, cantidad, estado, imagen, fecha ] )
     return true
    } catch (error) {
     return false
    }
+  }
+
+  //BUSCAR EL ID DEL ULTIMO REGISTRO EN LA BASE DE DATOS
+  static async lastIdProduct(): Promise<number | null> {
+    try {
+      const QUERY = `SELECT id_producto FROM producto ORDER BY id DESC LIMIT 1`;
+      const result: any = await ConnectionPool.query(QUERY);
+      if (result && result.length > 0) {
+        return result[0].id; // Devuelve solo el ID del primer resultado
+      } else {
+        return null; // o cualquier otro valor que desees devolver si no hay resultados
+      }
+    } catch (error) {
+      console.error("Error al obtener el último ID del producto:", error);
+      throw error; // Propaga el error para que pueda ser manejado en otro lugar si es necesario
+    }
   }
 
 
@@ -69,13 +85,17 @@ export class DB {
     return productos[0] as Producto 
   }
   
+ 
+
+
+
   //MODIFICAR PRODUCTOS
-  static async updateProduct({id_producto ,nombre, tipo, precio, tipo_envase, sabor, cantidad, estado, imagen}: Partial<Producto>){
+  static async updateProduct({id_producto ,nombre, tipo, precio, sabor, cantidad, estado, imagen, fecha}: Partial<Producto>){
     try {
       const QUERY = `UPDATE producto 
-      SET nombre = ?, tipo = ?, precio = ?, tipo_envase = ?, sabor = ?, cantidad = ?, estado = ?, imagen = ?
+      SET nombre = ?, tipo = ?, precio = ?, sabor = ?, cantidad = ?, estado = ?, imagen = ?, fecha = ?
       WHERE id_producto = ?`;
-     await ConnectionPool.query(QUERY,[nombre, tipo, precio, tipo_envase, sabor, cantidad, id_producto, estado, imagen] )
+     await ConnectionPool.query(QUERY,[nombre, tipo, precio, sabor, cantidad, estado, imagen, fecha, id_producto] )
      return true
     } catch (error) {
      return false
@@ -97,6 +117,37 @@ export class DB {
     }
    }
 
+   //MODIFICAR PROMOCIONES
+   static async updatePromo({ 
+    id_promocion,
+    tipo_promocion,
+    descripcion,
+    id_producto,
+    precio_especial,
+    fecha_inicio,
+    fecha_fin
+}: Partial<Promocion>){
+    try {
+      const QUERY = `UPDATE promocion 
+      SET tipo_promocion = ?, descripcion = ?, id_producto = ?, precio_especial = ?, fecha_inicio = ?, fecha_fin = ?
+      WHERE id_promocion = ?`;
+     await ConnectionPool.query(QUERY,[ 
+      tipo_promocion,
+      descripcion,
+      id_producto,
+      precio_especial,
+      fecha_inicio,
+      fecha_fin,
+      id_promocion] )
+     return true
+    } catch (error) {
+     return false
+    }
+   }
+
+
+
+
  
    //ELIMINAR UN REGISTRO ENVASES
    static async deleteEnvase({id_envase}: Partial<Envase>) {
@@ -110,13 +161,41 @@ export class DB {
     }
    }
  
+
+    //ELIMINAR UN REGISTRO PRODUCTOS
+   static async deleteProdructo({id_producto}: Partial<Producto>) {
+    try {
+      const QUERY = `DELETE FROM producto where id_producto=?`;
+      await ConnectionPool.query(QUERY,[id_producto])
+      return true
+    } catch (error) {
+      return false
+      
+    }
+   }
+
+  //ELIMINAR UN REGISTRO EN PROMOCIONES
+  static async deletePromocion({id_promocion}: Partial<Promocion>) {
+    try {
+      const QUERY = `DELETE FROM promocion where id_promocion=?`;
+      await ConnectionPool.query(QUERY,[id_promocion])
+      return true
+    } catch (error) {
+      return false
+      
+    }
+  }
+
+
+
+   
    
 
       //INSERT EMPLEADOS
-      static async insertEmpleado({matricula, nombre, contraseña, telefono}: Partial<Empleado>){
+      static async insertEmpleado({matricula, nombre, password, telefono}: Partial<Empleado>){
        try {
-        const QUERY = `INSERT INTO empleado (matricula, nombre, contraseña, telefono) values (?,?,?,?)`
-        await ConnectionPool.query(QUERY,[matricula, nombre, contraseña, telefono])
+        const QUERY = `INSERT INTO empleado (matricula, nombre, password, telefono) values (?,?,?,?)`
+        await ConnectionPool.query(QUERY,[matricula, nombre, password, telefono])
         return true
        } catch (error) {
         return false
@@ -129,12 +208,17 @@ export class DB {
         fecha_inicio, fecha_fin
       }:Partial<Promocion>){
         try {
-          const QUERY = `INSERT INTO promocion`
+          const QUERY = `INSERT INTO promocion (id_promocion, tipo_promocion, descripcion, id_producto, precio_especial, fecha_inicio, fecha_fin) values (?,?,?,?,?,?,?)`
+          await ConnectionPool.query(QUERY,[id_promocion, tipo_promocion, descripcion, id_producto, precio_especial,
+            fecha_inicio, fecha_fin])
+            return true
         } catch (error) {
           return false
           
         }
       }
+
+
       //INSERT ENVASE
       static async insertEnvase({id_envase, nombre, cantidad, fecha}: Partial<Envase>){
 
@@ -165,10 +249,10 @@ export class DB {
       }
 
       //INSERT PRODUCTOS AL CARRITO
-      static async insertProductCar({cantidad}: Partial<Producto>, {fecha}:Partial <Carrito>){
+      static async insertProductCar( {id_carrito, fecha, id_producto, id_envase, precio_final}: any){
         try {
-         const QUERY = `INSERT INTO carrito (id_producto, fecha) values (?,?)`
-         await ConnectionPool.query(QUERY,[ cantidad, fecha] )
+         const QUERY = `INSERT INTO carrito (id_producto, fecha, id_producto, id_envase, precio_final) values (?,?,?,?,?)`
+         await ConnectionPool.query(QUERY,[ id_carrito, fecha, id_producto, id_envase, precio_final] )
          return true
         } catch (error) {
          return false
@@ -176,16 +260,87 @@ export class DB {
        }
 
       // VERIFICAR CREDENCIALES DE EMPLEADO
-      static async buscarEmpleado({ matricula, contraseña }: Partial<Empleado>) {
+      static async buscarEmpleado({ matricula, password }: Partial<Empleado>) {
         try {
-          const QUERY = `SELECT * FROM empleado WHERE matricula = ? AND contraseña = ?`;
-          const empleado = await ConnectionPool.query(QUERY, [matricula, contraseña]) as any;
+          const QUERY = `SELECT * FROM empleado WHERE matricula = ? AND password = ?`;
+          const empleado = await ConnectionPool.query(QUERY, [matricula, password]) as any;
           return empleado[0] ;
         } catch (error) {
           return false;
         }
 }
 
+
+  //ULTIMO ID DEL CARRITO DE COMPRAS
+  
+   // Método estático para obtener el último ID del carrito de compras
+   static async lastIDCART(): Promise<number> {
+    const QUERY = `SELECT MAX(id_carrito) AS lastID FROM carrito`;
+    try {
+      const [rows]: any = await ConnectionPool.query(QUERY);
+      return rows[0].lastID || 0; // Si no hay registros, devolver 0
+    } catch (error) {
+      console.error('Error al obtener el último ID del carrito:', error);
+      throw error;
+    }
+  }
+
+
+
+
+
+
+   // VERIFICAR CREDENCIALES DE EMPLEADO
+   static async getEmpleadoById( matricula:  number) {
+    try {
+      const QUERY = `SELECT * FROM empleado where matricula = ?`
+      const empleado = await ConnectionPool.query(QUERY,[matricula]) as any
+      return empleado[0] as Empleado
+    } catch (error) {
+      return false;
+    }
+}
+
+
+
+
+       //SELECCIONAR UN EMPLEADO EL QUE USABA ANTES
+        static async getEmpleadoById1(matricula: number){
+          const QUERY = `SELECT * FROM empleado where matricula = ?`
+          const empleado = await ConnectionPool.query(QUERY,[matricula]) as any
+          return empleado[0] 
+        }
+
+
+       
+          
+    // SELECCIONAR HELADOS CREMA
+      static async getHeladosCrema() {
+        const QUERY = `SELECT * FROM producto where nombre = 'Helado' AND tipo = 'Crema'`
+        const products = await ConnectionPool.query(QUERY)
+        return products as Producto[]
+      }
+
+      // SELECCIONAR HELADOS AGUA
+      static async getHeladosAgua() {
+        const QUERY = `SELECT * FROM producto where nombre = 'Helado' AND tipo = 'Agua'`
+        const products = await ConnectionPool.query(QUERY)
+        return products as Producto[]
+      }
+      
+      // SELECCIONAR PALETAS AGUA
+      static async getPaletasAgua() {
+        const QUERY = `SELECT * FROM producto where nombre = 'Paleta' AND tipo = 'Agua'`
+        const products = await ConnectionPool.query(QUERY)
+        return products as Producto[]
+      }
+
+       // SELECCIONAR PALETAS CREMA
+       static async getPaletasCrema() {
+        const QUERY = `SELECT * FROM producto where nombre = 'Paleta' AND tipo = 'Crema'`
+        const products = await ConnectionPool.query(QUERY)
+        return products as Producto[]
+      }
      
 }
 

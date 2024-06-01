@@ -2,13 +2,15 @@ export declare global {
     interface Empleado {
       matricula: string
       nombre: string
-      contraseña: String
+      password: string
       telefono: number
     }
     interface Carrito {
       id_carrito: number
-      fecha: Date
+      fecha: string
       id_producto: number
+      id_envase: number
+      precio_final: number
     }
     interface Envase{
         id_envase: number
@@ -33,12 +35,11 @@ export declare global {
       nombre: string
       tipo: string
       precio: number
-      tipo_envase: number
       sabor: string
       cantidad: number
       estado: string
       imagen: string
-      fecha: Date
+      fecha: string
     
     }
     interface Promocion{

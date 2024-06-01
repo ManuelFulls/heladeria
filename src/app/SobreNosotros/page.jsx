@@ -1,6 +1,9 @@
+import { Header } from "@/components/Header";
+
 export default function SobreNosotros() {
   return (
     <>
+      <Header />
       <section className="seccion-nosotros">
         <h1 className="sobre-nosotros-title">Nuestra Historia</h1>
         <p className="sobre-nosotros-text">

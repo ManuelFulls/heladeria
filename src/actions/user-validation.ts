@@ -8,7 +8,7 @@ export async function validarEmpleado(data: FormData) {
     "use server";
     const usuario: Partial<Empleado> = {
       matricula: data.get("matricula") as string,
-      contraseña: data.get("password") as string,
+      password: data.get("password") as string,
     };
     const resultado = await DB.buscarEmpleado(usuario);
     try {

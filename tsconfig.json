@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,6 +15,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "types": [
+      "react",
+      "react-dom"
+    ],
     "incremental": true,
     "plugins": [
       {
@@ -18,9 +26,24 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Header/index.jsx", "src/app/Empleado/index.jsx", "src/app/Promo/index.jsx", "src/app/Recipiente/index.jsx", "src/app/Inventario/page.jsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/Header/index.jsx",
+    "src/app/Empleado/index.jsx",
+    "src/app/Promo/index.jsx",
+    "src/app/Recipiente/index.jsx",
+    "src/app/Inventario/page.jsx"
+, "src/components/vista-carrito/index.jsx", "src/components/vista-carrito/index.jsx"  ],
+  
+  "exclude": [
+    "node_modules"
+  ]
 }

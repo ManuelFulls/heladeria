@@ -16,7 +16,7 @@ export default function LoginForm() {
     try {
       const resultado = await DB.buscarEmpleado({
         matricula,
-        contraseña: password,
+        password: password,
       });
       if (resultado === null || resultado === undefined) {
         console.log("Usuario no válido");

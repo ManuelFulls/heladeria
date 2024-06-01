@@ -9,16 +9,16 @@ export default function Empleado() {
   const [formState, setFormState] = useState({
     matricula: "",
     nombre: "",
-    contraseña: "",
+    password: "",
     telefono: "",
   });
 
-  const { matricula, nombre, contraseña, telefono } = formState;
+  const { matricula, nombre, password, telefono } = formState;
   const formVacio = () => {
     setFormState({
       matricula: "",
       nombre: "",
-      contraseña: "",
+      password: "",
       telefono: "",
     });
   };
@@ -34,20 +34,28 @@ export default function Empleado() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log(formState.nombre, "", formState.contraseña);
-    try {
-      await insertarForm(formData);
-      formVacio();
-    } catch (error) {
-      console.error("Error al procesar el formulario:", error);
+
+    // Validación para campos vacíos
+    if (!matricula || !nombre || !password || !telefono) {
+      alert("Todos los campos son obligatorios");
+    } else {
+      try {
+        await insertarForm(formData);
+        formVacio();
+      } catch (error) {
+        console.error("Error al procesar el formulario:", error);
+      }
     }
   };
 
   return (
     <>
       <Navigation />
-      <h1>EMPLEADO</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <h1 className={styles.title}>Empleado</h1>
+      <p className={styles.descripcion}>
+        Desea agregar un nuevo empleado al sistema, rellene el formulario
+      </p>
+      <form onSubmit={handleSubmit} className={styles.form} autoComplete="off">
         <div className={styles.container_input}>
           <div className={styles.nombre}>
             <label className={styles.span1}>Matricula</label>
@@ -73,10 +81,10 @@ export default function Empleado() {
             <span className={styles.span1}>Contraseña</span>
             <input
               className={styles.input1}
-              type="text"
-              name="contraseña"
+              type="password"
+              name="password"
               onChange={onInputChange}
-              value={contraseña}
+              value={password}
             />
           </div>
           <div>

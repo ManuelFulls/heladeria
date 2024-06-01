@@ -1,0 +1,29 @@
+
+.form{
+    width: 40%;
+    display: grid;
+    grid-auto-rows: 2em;
+    padding: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3); /* Sombra */
+    
+    border-radius: 20px;
+    
+}
+.nombre, .telefono, .password{
+   padding-top: .5em;
+}
+
+.titulo{
+    margin: 1em;
+    text-align: center;
+}
+.boton, .editar{
+   margin-top: 1em;
+    width: 5em;
+    height: 2em;
+    border-radius: 20px;
+    background-color: #15CD69;
+    display: block;
+}

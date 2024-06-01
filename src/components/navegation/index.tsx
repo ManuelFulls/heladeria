@@ -1,31 +1,36 @@
 import Link from "next/link";
 import styles from "./navegation.module.css"; // Importa los estilos CSS
+import dynamic from "next/dynamic";
 
 export default function Navbar() {
   return (
-    <nav className={styles.navbar}>
-      <ul className={styles.navbarNav}>
-        <li className={styles.navItem}>
-          <Link href={"/Inventario"}>
-            <p className={styles.navLink}>Producto🍨</p>
+    <header className={styles.header}>
+      <nav className={styles.navbar}>
+        <div className={styles.barratitle}>
+          <img src="LOGO.png" alt="Logo Juchiman" className={styles.imagen} />
+          <h2 className={styles.title}>HELADERIA JUCHIMAN</h2>
+        </div>
+        <div className={styles.conlink}>
+          <Link href={"/Inventario"} className={styles.link}>
+            Helado🍨
           </Link>
-        </li>
-        <li className={styles.navItem}>
-          <Link href={"/Recipiente"}>
-            <p className={styles.navLink}>Recipiente🍦</p>
+          <Link href={"/Recipiente"} className={styles.link}>
+            Recipiente🍦
           </Link>
-        </li>
-        <li className={styles.navItem}>
-          <Link href={"/Empleado"}>
-            <p className={styles.navLink}>Empleado👨‍💻</p>
+          <Link href={"/Empleado"} className={styles.link}>
+            Empleado👨‍💻
           </Link>
-        </li>
-        <li className={styles.navItem}>
-          <Link href={"/Promo"}>
-            <p className={styles.navLink}>Promociones🎁</p>
+          <Link href={"/Promo"} className={styles.link}>
+            Promociones🎁
           </Link>
-        </li>
-      </ul>
-    </nav>
+          <Link href={"/Caja"} className={styles.link}>
+            Ventas💰
+          </Link>
+          <Link href={"/Ajuste"} className={styles.link}>
+            Informacion🕹️
+          </Link>
+        </div>
+      </nav>
+    </header>
   );
 }
